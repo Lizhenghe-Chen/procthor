@@ -398,15 +398,15 @@ def add_windows(
             # NOTE: flips the position of the wall depending on how the polygon
             # is specified.
             wall_poly = wall_map[room_line["wallId"]]["polygon"]
-            if abs(wall_poly[0]["x"] - wall_poly[1]["x"]) < 1e-3:
+            if abs(wall_poly[0]["x"] - wall_poly[3]["x"]) < 1e-3:
                 # NOTE: changes along z
                 p1 = wall_poly[0]["z"]
-                p2 = wall_poly[1]["z"]
+                p2 = wall_poly[3]["z"]
                 start_position += room_line["z1"] - min(p1, p2)
             else:
                 # NOTE: changes along x
                 p1 = wall_poly[0]["x"]
-                p2 = wall_poly[1]["x"]
+                p2 = wall_poly[3]["x"]
                 start_position += room_line["x1"] - min(p1, p2)
             if p1 < p2:
                 min_x = start_position

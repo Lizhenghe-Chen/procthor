@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 from ai2thor.controller import Controller
 from attrs import define
-from moviepy.editor import ImageSequenceClip
+from moviepy import ImageSequenceClip
 from shapely.geometry import Point
 
 from procthor.constants import FLOOR_Y, PROCTHOR_INITIALIZATION, SCHEMA
@@ -258,9 +258,9 @@ class PartialHouse:
                     roomId=f"room|{room_id}",
                     polygon=[
                         Vector3(x=x0, y=FLOOR_Y, z=z0),
-                        Vector3(x=x1, y=FLOOR_Y, z=z1),
                         Vector3(x=x0, y=FLOOR_Y + house_structure.ceiling_height, z=z0),
                         Vector3(x=x1, y=FLOOR_Y + house_structure.ceiling_height, z=z1),
+                        Vector3(x=x1, y=FLOOR_Y, z=z1),
                     ],
                 )
                 walls.append(wall)

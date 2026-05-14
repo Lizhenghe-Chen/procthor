@@ -229,6 +229,12 @@ class AssetGroup:
         for child_id in child_instance_ids:
             del objects[child_id]
 
+        # NOTE: Unity-side parser uses transform.position directly for floor objects.
+        # For asset groups, keep child heights (objects on top) but snap top-level
+        # objects in the group to the floor to avoid floating parents.
+        for obj in objects.values():
+            obj["position"]["y"] = 0
+
         return list(objects.values())
 
 
@@ -727,7 +733,8 @@ class ProceduralRoom:
                     rotation=rotation,
                     position=Vector3(
                         x=center_x,
-                        y=bb["y"] / 2,
+                        # Unity parser uses transform.position directly, so use floor-level Y.
+                        y=0,
                         z=center_z,
                     ),
                     anchor_type=anchor_type,

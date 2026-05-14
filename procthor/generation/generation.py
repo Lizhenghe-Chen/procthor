@@ -236,9 +236,9 @@ def create_empty_partial_house(
                 roomId=f"room|{room_id}",
                 polygon=[
                     Vector3(x=x0, y=FLOOR_Y, z=z0),
-                    Vector3(x=x1, y=FLOOR_Y, z=z1),
                     Vector3(x=x0, y=FLOOR_Y + ceiling_height, z=z0),
                     Vector3(x=x1, y=FLOOR_Y + ceiling_height, z=z1),
+                    Vector3(x=x1, y=FLOOR_Y, z=z1),
                 ],
             )
             walls.append(wall)
