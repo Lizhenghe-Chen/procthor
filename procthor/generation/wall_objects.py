@@ -620,9 +620,9 @@ def get_wall_placement_info(
 ) -> Dict[str, Any]:
     """Gets the placement info for placing an asset on a wall."""
     px0 = wall_poly[0]["x"]
-    px1 = wall_poly[1]["x"]
+    px1 = wall_poly[3]["x"]
     pz0 = wall_poly[0]["z"]
-    pz1 = wall_poly[1]["z"]
+    pz1 = wall_poly[3]["z"]
 
     if abs(px0 - px1) < 1e-3:
         # NOTE: placed along z
