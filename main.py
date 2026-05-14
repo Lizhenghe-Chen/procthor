@@ -164,7 +164,7 @@ def main():
             split=args.split,
             seed=args.seed,
             room_spec=args.room_spec,
-            room_spec_sampler=PROCTHOR10K_ROOM_SPEC_SAMPLER,
+            # room_spec_sampler=PROCTHOR10K_ROOM_SPEC_SAMPLER,
             interior_boundary=interior_boundary,
             generation_functions=gfs,
         )
