@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+gunicorn
+procthor
+ai2thor
+numpy
+attrs
+pandas
+shapely
+moviepy
+networkx
+python-fcl
+scipy

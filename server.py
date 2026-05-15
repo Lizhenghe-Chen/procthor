@@ -8,7 +8,7 @@ ProcTHOR FastAPI Server
     uvicorn server:app --reload --host 0.0.0.0 --port 8000
 
 接口文档：
-    http://localhost:8000/docs
+    http://localhost:8001/docs
 """
 import json
 import logging

@@ -1,0 +1,8 @@
+services:
+  procthor:
+    image: procthor
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8001:8001
