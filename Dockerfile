@@ -1,4 +1,9 @@
-# For more information, please refer to https://aka.ms/vscode-docker-python
+# Use BuildKit syntax to allow cache mounts for pip and ai2thor assets.
+# Build with BuildKit enabled: e.g. `DOCKER_BUILDKIT=1 docker build .` or
+# `COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose up --build`.
+# For backwards compatibility, enable BuildKit only when building; otherwise
+# the `--mount` option requires BuildKit and the build will fail.
+# syntax=docker/dockerfile:1.4
 FROM python:3.10-slim
 
 EXPOSE 8001
@@ -13,11 +18,33 @@ ENV PYTHONUNBUFFERED=1
 ENV DISPLAY=:99
 
 # Install system dependencies + Xvfb
+# 安装 Unity/AI2-THOR 依赖
 RUN apt-get update && apt-get install -y \
     xvfb \
+    ffmpeg \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgl1 \
+    libglib2.0-0 \
+    libgtk2.0-0 \
+    libgtk-3-0 \
+    libx11-6 \
+    libnss3 \
+    libasound2 \
+    libxcursor1 \
+    libxrandr2 \
+    libxi6 \
+    libxinerama1 \
+    libxxf86vm1 \
+    mesa-utils \
+    wget \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# Install pip requirements
+# Install pip requirements. Use BuildKit cache mounts to persist pip downloads
+# and ai2thor runtime assets between builds (speeds rebuilds and avoids
+# re-downloading thor-Linux64-*.zip).
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 

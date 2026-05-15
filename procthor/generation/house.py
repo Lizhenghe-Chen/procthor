@@ -6,7 +6,7 @@ import random
 from collections import Counter
 from functools import total_ordering
 from typing import Any, Dict, List, Optional, Tuple
-
+from ai2thor.platform import CloudRendering
 import numpy as np
 from ai2thor.controller import Controller
 from attrs import define
@@ -174,6 +174,7 @@ class House:
         """Saves a top-down video of the house."""
         if controller is None:
             controller = Controller(
+                  platform=CloudRendering,
                 width=width, height=height, **PROCTHOR_INITIALIZATION
             )
 

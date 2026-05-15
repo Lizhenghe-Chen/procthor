@@ -6,3 +6,11 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - 8001:8001
+    shm_size: "2gb"
+    environment:
+      - DISPLAY=:99
+
+volumes:
+  ai2thor_cache:
+
+  

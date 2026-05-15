@@ -1,5 +1,6 @@
 from procthor.generation import PROCTHOR10K_ROOM_SPEC_SAMPLER, HouseGenerator
-
+import ai2thor
+print(ai2thor.__version__)
 house_generator = HouseGenerator(
     split="train",  room_spec="4-room"
 )
