@@ -11,3 +11,5 @@ moviepy
 networkx
 python-fcl
 scipy
+openai
+compress-json
