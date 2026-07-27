@@ -1,19 +1,16 @@
 services:
   procthor:
-    image: procthor
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    build: .
+    image: procthor:latest
+    platform: linux/amd64
     ports:
-      - 8001:8001
+      - "8001:8001"
     shm_size: "2gb"
     environment:
       - DISPLAY=:99
       - OPENAI_API_KEY=${OPENAI_API_KEY:-sk-}
-      - OPENAI_API_BASE=${OPENAI_API_BASE:-http://10.120.47.138:8000/v1}
-      - LLM_MODEL_NAME=${LLM_MODEL_NAME:-qwen3.5}
-
-volumes:
-  ai2thor_cache:
+      - OPENAI_API_BASE=${OPENAI_API_BASE:-https://api.deepseek.com}
+      - LLM_MODEL_NAME=${LLM_MODEL_NAME:-deepseek-v4-flash}
+    restart: unless-stopped
 
   

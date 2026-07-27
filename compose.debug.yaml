@@ -1,10 +1,15 @@
 services:
   procthor:
-    image: procthor
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    build: .
+    image: procthor:latest
+    platform: linux/amd64
     command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 -m uvicorn server:app --host 0.0.0.0 --port 8001"]
     ports:
       - 8001:8001
       - 5678:5678
+    shm_size: "2gb"
+    environment:
+      - DISPLAY=:99
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-sk-}
+      - OPENAI_API_BASE=${OPENAI_API_BASE:-https://api.deepseek.com}
+      - LLM_MODEL_NAME=${LLM_MODEL_NAME:-deepseek-v4-flash}
